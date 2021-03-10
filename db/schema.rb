@@ -15,12 +15,12 @@ ActiveRecord::Schema.define(version: 2021_03_05_233207) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "attributes", force: :cascade do |t|
+  create_table "characteristics", force: :cascade do |t|
     t.string "name"
     t.bigint "product_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["product_id"], name: "index_attributes_on_product_id"
+    t.index ["product_id"], name: "index_characteristics_on_product_id"
   end
 
   create_table "deliveries", force: :cascade do |t|
@@ -31,11 +31,11 @@ ActiveRecord::Schema.define(version: 2021_03_05_233207) do
 
   create_table "order_attributes", force: :cascade do |t|
     t.string "value"
-    t.bigint "attribute_id", null: false
+    t.bigint "characteristic_id", null: false
     t.bigint "order_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["attribute_id"], name: "index_order_attributes_on_attribute_id"
+    t.index ["characteristic_id"], name: "index_order_attributes_on_characteristic_id"
     t.index ["order_id"], name: "index_order_attributes_on_order_id"
   end
 
@@ -71,8 +71,8 @@ ActiveRecord::Schema.define(version: 2021_03_05_233207) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  add_foreign_key "attributes", "products"
-  add_foreign_key "order_attributes", "attributes"
+  add_foreign_key "characteristics", "products"
+  add_foreign_key "order_attributes", "characteristics"
   add_foreign_key "order_attributes", "orders"
   add_foreign_key "orders", "deliveries"
   add_foreign_key "pack_products", "products", column: "pack_id"
