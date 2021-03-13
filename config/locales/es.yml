@@ -1,0 +1,27 @@
+---
+es:
+  cocoon:
+    characteristics:
+      name: "nombre de atributo"
+  hello: Hello world
+  products:
+    form:
+      name: Nombre de producto
+      price: Costo
+  characteristics:
+    form:
+      name: Nombre de atributo
+  activerecord:
+    models:
+      product:
+        one: Producto
+        other: Productos
+      characteristic:
+        one: Atributo
+        other: Atributos
+    attributes:
+      product:
+        price: Precio
+        characteristics: Atributos
+  common:
+    back: Atrás

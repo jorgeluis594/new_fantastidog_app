@@ -1,0 +1,39 @@
+<div class="modal fade" id=<%= modal_id %> tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <%= simple_form_for @product, remote: print_product_id.blank? ? false : true do |f| %>
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Editar producto</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="card-body row g-3">
+            <h5 class="card-title">Producto</h5>
+            <div class="col-sm-6">
+              <%= f.input :name,label: t('.name'), class: 'form-control' %>
+            </div>
+            <div class="col-sm-6">
+              <%= f.input :price,label: t('.price'), class: 'form-control' %>
+            </div>
+          </div>
+          <div class="card-body row g-3">
+            <h5 class="card-title">Atributo</h5>
+            <%= link_to_add_association f, :characteristics, 'data-association-insertion-node' => '.characteristics .characteristics_container', 'data-turbolinks' => false, class: 'btn btn-primary btn-sm w-auto mx-auto', partial: 'characteristics_fields' do %>
+              Agregar atributo
+            <% end %>
+            <div class="col-12 characteristics">
+              <%= f.simple_fields_for :characteristics do |g| %>
+                <%= render 'products/characteristics_fields', f: g %>
+              <% end %>
+              <div class="characteristics_container"></div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <%= f.button :submit, class: "btn-primary #{can_update_product?}", data: {'product-id': print_product_id} %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

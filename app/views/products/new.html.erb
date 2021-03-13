@@ -1,13 +1,1 @@
-<h4 class="mb-3">Crear producto</h4>
-<%= simple_form_for @product, class: 'row g-3' do |f| %>
-  <div class="col-sm-6">
-    <%= f.label :name, class: 'form-label' %>
-    <%= f.input :name, class: 'form-control' %>
-  </div>
-  <div class="col-sm-6">
-    <%= f.label :price, class: 'form-label' %>
-    <%= f.input :price, class: 'form-control' %>
-  </div>
-  <br>
-  <p class="fs-6">Atributos</p>
-<% end %>
+<%= render 'form', locals: { modal_id: 'createProduct' } %>
